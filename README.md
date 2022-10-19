@@ -9,4 +9,4 @@ Prerequisites :
 Install NodeJS with **npm package manager**: https://nodejs.org/en/download/ 
 
 
-Render : ![render](./img/render.png)
+Render : ![render](./src/img/render.png)
