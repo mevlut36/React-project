@@ -5,35 +5,53 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useState } from 'react';
 
 function App() {
   return (
-          <div className="App">
-              <NavbarMenu></NavbarMenu>
-              <header className="App-header">
-                <div class="wrapper">
-                  <div class="main-panel">
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                          <div className='card'>
-                            <div class="card-header">
-                              <h4 class="card-title text-primary">Qui suis-je ?</h4>
-                            </div>
-                            <div class="card-body">
-                              <p class="text-primary h4">L'eau rème Hip-soumsoum</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+    <div className="App">
+      <NavbarMenu></NavbarMenu>
+      <header className="App-header">
+        <div class="wrapper">
+          <div class="main-panel">
+            <div class="content">
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <FormArticle></FormArticle>
                   </div>
                 </div>
-              </header>
-              <FooterMenu></FooterMenu>
-
+              </div>
             </div>
-            );
+          </div>
+        </header>
+      <FooterMenu></FooterMenu>
+    </div>
+  );
+}
+
+function FormArticle(){
+  function handleSubmit(e) {
+    document.getElementById("titre").innerHTML = titre;
+    document.getElementById("texte").innerHTML = texte;
+    e.preventDefault();
+  }
+  const [titre, SetTitre] = useState("");
+  const [texte, SetTexte] = useState("");
+  return(
+    <div class="row block-9 justify-content-center mb-5">
+      <form class="bg-light p-5 contact-form rounded" onSubmit={handleSubmit}>
+        <div class="form-group">
+          <input class="form-control" value={titre} onChange={e => SetTitre(e.target.value)} placeholder="Titre" type="text" name="titre" required />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" value={texte} onChange={e => SetTexte(e.target.value)} placeholder="Texte" type="text" name="texte" required></textarea>
+        </div>
+        <button type='submit' class="form-control btn btn-primary">Submit</button>
+      </form>
+      <p id="titre"></p>
+      <p id="texte"></p>
+    </div>
+  );
 }
 
 function NavbarMenu() {
